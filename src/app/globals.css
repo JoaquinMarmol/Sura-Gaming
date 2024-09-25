@@ -11,7 +11,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #000000;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -121,3 +121,7 @@ button:focus-visible {
 
 @import "./components/FullScreenLoading/style.css";
 @import "./components/ErrorToast/style.css";
+@import "./Account/account.module.css";
+@import "./components/blockchain/Connected/connect.module.css";
+@import "./Wallet/wallet.module.css";
+@import "./Profile/profile.module.css";

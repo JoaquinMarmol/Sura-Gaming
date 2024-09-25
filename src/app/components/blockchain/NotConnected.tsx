@@ -8,9 +8,8 @@ const NotConnected = () => {
 
   return (
     <>
-      <p>Not connected</p>
       <div className="card">
-        <button onClick={onClickConnect}>Connect</button>
+        <button onClick={onClickConnect}>Sign in</button>
       </div>
     </>
   );

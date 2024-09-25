@@ -1,31 +1,37 @@
 "use client";
-import { Text } from "@0xsequence/design-system";
 import { useAccount } from "wagmi";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Connected from "./components/blockchain/Connected";
 import NotConnected from "./components/blockchain/NotConnected";
 
 const HomePage = () => {
   const { isConnected } = useAccount();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isConnected) {
+      const hasLoggedInBefore = localStorage.getItem("hasLoggedInBefore");
+
+      if (!hasLoggedInBefore) {
+        router.push("/Account");
+        localStorage.setItem("hasLoggedInBefore", "true");
+      }
+    }
+  }, [isConnected, router]);
+
   return (
-    <div>
-      <h1>Sequence Kit Starter - Nextjs</h1>
-      <h2 className="homepage__marginBtNormal">Embedded Wallet</h2>
+    <div className="homepage">
+      {!isConnected && (
+        <>
+          <img src="/img/image1.png" alt="Gaming image" />
+          <h2 className="homepage__marginBtNormal">
+            Welcome to the future of gaming!
+          </h2>
+        </>
+      )}
+
       {isConnected ? <Connected /> : <NotConnected />}
-      <footer className="homepage__footer">
-        <Text>
-          Want to learn more? Read the{" "}
-          <a
-            href={
-              "https://docs.sequence.xyz/solutions/wallets/sequence-kit/overview/"
-            }
-            target="_blank"
-            rel="noreferrer "
-          >
-            docs
-          </a>
-          !
-        </Text>
-      </footer>
     </div>
   );
 };

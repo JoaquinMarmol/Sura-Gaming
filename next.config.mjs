@@ -4,7 +4,7 @@ const nextConfig = {
   distDir: "dist",
   assetPrefix: "./",
   images: {
-    loader: "akamai",
+    unoptimized: true, // Desactivar la optimización de imágenes
     path: "",
   },
 };
