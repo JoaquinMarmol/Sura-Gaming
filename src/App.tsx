@@ -136,7 +136,7 @@ function App() {
           </div>
           <div className="connected-nft-info">
             <div className="connected-nft-info-item">
-              <img src="./earlyuser.png" alt="Top 1k" style={{ width: "100px" }} />
+              <img src="./earlyuser.png" className='connected-nft-image' alt="Top 1k" style={{ width: "100px" }} />
               <p>Top 1k</p>
             </div>
             <div className="connected-nft-info-item">

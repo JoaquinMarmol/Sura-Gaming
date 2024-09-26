@@ -127,10 +127,10 @@ body {
   text-align: center;
   align-items: center;
   justify-content: center;
+}
 
-  img {
-    width: 70px;
-  }
+.connected-nft-image {
+  width: 70px;
 }
 
 .connected-footer {
