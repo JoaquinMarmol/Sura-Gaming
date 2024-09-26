@@ -1,9 +1,15 @@
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin'
 
-export default defineConfig({
-  base: './',  // Asegura que el valor sea el correcto
+export default defineConfig(({ mode }) => ({
+  plugins: [
+    react(),
+    vanillaExtractPlugin(),
+  ],
+  base: './',
   build: {
     outDir: 'dist',
   },
-});
+}))
 
