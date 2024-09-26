@@ -14,6 +14,7 @@ import { MaybeWithStytch } from './components/MaybeWithStytch.tsx'
 import Account from './Account.tsx'
 import Register from './Register.tsx'
 import Welcome from './Welcome.tsx'
+import Profile from './Profile.tsx'
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID
 const GOOGLE_CLIENT_ID_DEV = import.meta.env.VITE_GOOGLE_CLIENT_ID_DEV
@@ -66,6 +67,10 @@ export const router = createHashRouter([
   {
     path: '/welcome',
     element: <Welcome />
+  },
+  {
+    path: '/profile',
+    element: <Profile />
   }
 ])
 

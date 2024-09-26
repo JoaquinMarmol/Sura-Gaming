@@ -40,14 +40,16 @@ export default function Profile() {
   return (
     <div className="profile-page">
       <header className="profile-page__header">
-        <img src="/img/flechaizq.svg" alt="" className="profile-page__header-arrow" />
+        <a href="/">
+          <img src="/flechaizq.svg" alt="" className="profile-page__header-arrow" />
+        </a>
         <h3>Profile</h3>
-        <img src="/img/question.svg" alt="" className="profile-page__header-question" />
+        <img src="/question.svg" alt="" className="profile-page__header-question" />
       </header>
       <div className="profile-header">
-        <img src="/img/image1.png" alt="Background" width={300} height={300} className="profile-background" />
+        <img src="/image1.png" alt="Background" width={300} height={300} className="profile-background" />
         <div className="profile-info">
-          <img src="/img/image1.png" alt="Profile Picture" width={80} height={80} className="profile-picture" />
+          <img src="/image1.png" alt="Profile Picture" width={80} height={80} className="profile-picture" />
           <h2>{formData.fullName}</h2>
           <p>{formData.email}</p>
           <span className="edit-button">Edit</span>
@@ -65,7 +67,9 @@ export default function Profile() {
             onChange={handleChange}
             required
           />
-          <span className="edit-icon">✏️</span>
+          <div className="edit-icon-container">
+            <span className="edit-icon">✏️</span>
+          </div>
         </div>
         <div className="form-group custom-date-input">
           <input
@@ -77,7 +81,9 @@ export default function Profile() {
             required
           />
           {!formData.birthday && <span className="date-placeholder">Birthday</span>}
-          <span className="edit-icon">✏️</span>
+          <div className="edit-icon-container">
+            <span className="edit-icon">✏️</span>
+          </div>
         </div>
         <div className="form-group">
           <input
@@ -89,23 +95,25 @@ export default function Profile() {
             onChange={handleChange}
             required
           />
-          <span className="edit-icon">✏️</span>
+          <div className="edit-icon-container">
+            <span className="edit-icon">✏️</span>
+          </div>
         </div>
         <button type="submit" className="form-button">
           Save
         </button>
       </form>
       <div>
-        <img src="/img/Property 1=Nab Var - Home.svg" alt="" className="connected-footer"/>
+        <img src="/Property 1=Nab Var - Home.svg" alt="" className="connected-footer"/>
         <a href="/">
-          <img src="/img/Home-gray.svg" alt="" className="connected-home"/>
+          <img src="/Home-gray.svg" alt="" className="connected-home"/>
         </a>
         <div className="connected-profile-wallet">
-          <a href="/Profile">
-            <img src="/img/Profile.svg" alt="" className="connected-profile"/>
+          <a href="./#/profile">
+            <img src="/Profile.svg" alt="" className="connected-profile"/>
           </a>
-          <a href="/Wallet">
-            <img src="/img/Wallet-gray.svg" alt="" className="connected-wallet"/>          
+          <a href="./#/wallet">
+            <img src="/Wallet-gray.svg" alt="" className="connected-wallet"/>          
           </a>
         </div>
       </div>

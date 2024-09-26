@@ -113,23 +113,26 @@ function App() {
           </Modal>
         )}
       </AnimatePresence>
-      <div style={{ maxWidth: "720px", margin: "80px auto", padding: "0 24px" }}>
-      {/* Slider */}
-      <div className="slider">
-        {isMounted && (
-          <Slider {...settings}>
-            <div className="slider-img">
-              <img className="slider-img" src="./slide.png" alt="Slide 1" />
-            </div>
-            <div className="slider-img">
-              <img className="slider-img" src="./slide2.png" alt="Slide 2" />
-            </div>
-            <div className="slider-img">
-              <img className="slider-img" src="./slide3.png" alt="Slide 3" />
-            </div>
-          </Slider>
-        )}
-      </div>
+      <header className="page__header">
+        <h3>Hello User!</h3>
+        <img src="/question.svg" alt="" className="profile-page__header-question" />
+      </header>
+      <div style={{ maxWidth: "720px", padding: "0 24px", margin: "0px auto" }}>
+        <div className="slider">
+          {isMounted && (
+            <Slider {...settings}>
+              <div className="slider-img">
+                <img className="slider-img" src="./slide.png" alt="Slide 1" />
+              </div>
+              <div className="slider-img">
+                <img className="slider-img" src="./slide2.png" alt="Slide 2" />
+              </div>
+              <div className="slider-img">
+                <img className="slider-img" src="./slide3.png" alt="Slide 3" />
+              </div>
+            </Slider>
+          )}
+        </div>
         <div className="connected-nft" style={{ marginTop: "40px" }}>
           <div className="connected-nft-title">
             <h2>Your NFTs</h2>
@@ -161,16 +164,16 @@ function App() {
           <img src="./Property 1=Nab Var - Home.svg" alt="Footer Icon" className="connected-footer" style={{ display: "block", margin: "0 auto" }} />
           <img src="./Home.svg" alt="Home Icon" className="connected-home" style={{ display: "block", margin: "0 auto", marginTop: "10px" }} />
           <div className="connected-profile-wallet" style={{ display: "flex", justifyContent: "space-between", marginTop: "20px" }}>
-            <a href="/Profile">
+            <a href="./#/profile">
               <img src="./Profile-gray.svg" alt="Profile Icon" className="connected-profile" />
             </a>
-            <a href="/Wallet">
+            <a href="./#/wallet">
               <img src="./Wallet-gray.svg" alt="Wallet Icon" className="connected-wallet" />
             </a>
           </div>
         </div>
       </div>
-      <Box marginY="0" marginX="auto" paddingX="6" style={{ maxWidth: '720px', marginTop: '80px', marginBottom: '80px' }}>
+      <Box marginY="0" marginX="auto" paddingX="6" style={{ maxWidth: '720px', marginBottom: '80px' }}>
         <Box marginBottom="5" flexDirection="row">
           {currentAccount && (
             <Box flexDirection="column" gap="2">
