@@ -1,13 +1,13 @@
 import { Box, Text, Spinner, Modal} from '@0xsequence/design-system'
 import { SetStateAction, useEffect, useRef, useState } from 'react'
 import { CredentialResponse, GoogleLogin } from '@react-oauth/google'
-import { router, sequence } from './main'
-import { PINCodeInput } from './components/PINCodeInput'
-import { EmailConflictWarning } from './components/views/EmailConflictWarningView.tsx'
-import { randomName } from './utils/indexer'
-import { useEmailAuth } from './utils/useEmailAuth.ts'
+import { router, sequence } from '../main'
+import { PINCodeInput } from '../components/PINCodeInput'
+import { EmailConflictWarning } from '../components/views/EmailConflictWarningView.tsx'
+import { randomName } from '../utils/indexer'
+import { useEmailAuth } from '../utils/useEmailAuth.ts'
 import { EmailConflictInfo } from '@0xsequence/waas'
-import './login.css'
+import '../Login/login.css'
 
 function Login() {
   const [email, setEmail] = useState('')

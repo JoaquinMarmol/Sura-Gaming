@@ -4,17 +4,18 @@ import '@0xsequence/design-system/styles.css'
 import { ThemeProvider, ToastProvider } from '@0xsequence/design-system'
 import { createHashRouter, RouterProvider } from 'react-router-dom'
 
-import Login from './Login.tsx'
+import Login from './Login/Login.tsx'
 import { GoogleOAuthProvider } from '@react-oauth/google'
 import { SequenceWaaS } from '@0xsequence/waas'
 import App from './App.tsx'
 import { ethers } from 'ethers'
 import './main.css'
 import { MaybeWithStytch } from './components/MaybeWithStytch.tsx'
-import Account from './Account.tsx'
-import Register from './Register.tsx'
-import Welcome from './Welcome.tsx'
-import Profile from './Profile.tsx'
+import Account from './Account/Account.tsx'
+import Register from './Register/Register.tsx'
+import Welcome from './Welcome/Welcome.tsx'
+import Profile from './Profile/Profile.tsx'
+import Wallet from './Wallet/Wallet.tsx'
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID
 const GOOGLE_CLIENT_ID_DEV = import.meta.env.VITE_GOOGLE_CLIENT_ID_DEV
@@ -71,6 +72,10 @@ export const router = createHashRouter([
   {
     path: '/profile',
     element: <Profile />
+  },
+  {
+    path: '/wallet',
+    element: <Wallet />
   }
 ])
 

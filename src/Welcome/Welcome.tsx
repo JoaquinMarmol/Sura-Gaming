@@ -1,5 +1,5 @@
 import { Box } from '@0xsequence/design-system'
-import './login.css'
+import '../Login/login.css'
 
 function Welcome() {
   return (
