@@ -37,6 +37,22 @@ function Login() {
     onSuccess: async ({ wallet }) => {
       console.log(`Wallet address: ${wallet}`)
       router.navigate('/account')
+      const { idToken } = await sequence.getIdToken()
+      const response = await fetch(`${import.meta.env.VITE_API_HOST}/api/user/register`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${idToken}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ wallet })
+      })
+
+      if (response.ok) {
+        console.log('Registration successful')
+        router.navigate('/account')
+      } else {
+        console.error('Registration failed')
+      }
     }
   })
 
@@ -55,7 +71,22 @@ function Login() {
       },
       randomName()
     )
-
+    const { idToken } = await sequence.getIdToken()
+    const response = await fetch(`${import.meta.env.VITE_API_HOST}/api/user/register`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${idToken}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ wallet: res.wallet, email: res.email })
+    })
+    router.navigate('/account')
+    if (response.ok) {
+      console.log('Registration successful')
+      router.navigate('/account')
+    } else {
+      console.error('Registration failed')
+    }
     console.log(`Wallet address: ${res.wallet}`)
     console.log(`Email address: ${res.email}`)
     router.navigate('/account')
@@ -67,7 +98,7 @@ function Login() {
         <img src="./sura.svg" alt="" />
         <Box marginTop="6">
           <Text variant="large" color="text100" fontWeight="bold">
-            Email Login
+            Register
           </Text>
         </Box>
 
@@ -77,10 +108,10 @@ function Login() {
               <img src="./sura.svg" alt=""/>
               <Box marginTop="6" flexDirection={'column'} justifyContent={'center'} alignItems={'center'}>
                 <Text variant="xlarge" color="text100" fontWeight="bold" textAlign="center">
-                  Check your inbox
+                  Revisa tus mails.
                 </Text>
                 <Text marginTop="5" variant="normal" color="text80" textAlign="center">
-                  We&apos;ve sent you an email with a verification code.
+                  Te enviamos un codigo de verificacion.
                 </Text>
               </Box>
               <Box marginTop="4" justifyContent={'center'} alignItems={'center'}>

@@ -1,49 +1,18 @@
 import { useEffect, useState } from 'react'
-import { Box, Text, Divider, Button, Spinner, Modal, Collapsible, ExternalLinkIcon } from '@0xsequence/design-system'
+import { Box, Text, Button, Spinner, Modal } from '@0xsequence/design-system'
 import { router, sequence } from './main'
-import { SendTransactionsView } from './components/views/SendTransactionsView'
 import { googleLogout } from '@react-oauth/google'
-import { SignMessageView } from './components/views/SignMessageView'
-import { CallContractsView } from './components/views/CallContractsView'
 import { AnimatePresence } from 'framer-motion'
 import { PINCodeInput } from './components/PINCodeInput'
-import { SendERC20View } from './components/views/SendERC20View'
-import { SendERC1155View } from './components/views/SendERC1155View'
-import { NetworkSwitch } from './components/NetworkSwitch.tsx'
-import { accountToName } from './components/views/ListAccountsView.tsx'
-import { Account, IdentityType, Network } from '@0xsequence/waas'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 function App() {
-  const [walletAddress, setWalletAddress] = useState<string>()
-  const [fetchWalletAddressError, setFetchWalletAddressError] = useState<string>()
   const [isMounted, setIsMounted] = useState(false);
   const [sessionValidationCode, setSessionValidationCode] = useState<string[]>([])
   const [isValidateSessionPending, setIsValidateSessionPending] = useState(false)
   const [isFinishValidateSessionPending, setIsFinishValidateSessionPending] = useState(false)
-
-  const [network, setNetwork] = useState<undefined | Network>()
-
-  const [currentAccount, setCurrentAccount] = useState<Account>()
-
-  useEffect(() => {
-    sequence
-      .getAddress()
-      .then((address: string) => {
-        setWalletAddress(address)
-      })
-      .catch((e: Error) => {
-        setFetchWalletAddressError(e.message)
-      })
-
-    sequence.listAccounts().then(response => {
-      if (response.currentAccountId) {
-        setCurrentAccount(response.accounts.find(account => account.id === response.currentAccountId))
-      }
-    })
-  }, [])
 
   useEffect(() => {
     sequence.isSignedIn().then((signedIn: boolean) => {
@@ -89,6 +58,16 @@ function App() {
     slidesToScroll: 1,
   };
 
+  const gameSliderSettings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 3.3,
+    slidesToScroll: 1,
+    arrows: true,
+    initialSlide: 0,
+  };
+
   return (
     <>
       <AnimatePresence>
@@ -115,32 +94,33 @@ function App() {
       </AnimatePresence>
       <header className="page__header">
         <h3>Hello User!</h3>
-        <img src="/question.svg" alt="" className="profile-page__header-question" />
+        <img src="/notificacion.svg" alt="" className="profile-page__header-question" />
       </header>
-      <div style={{ maxWidth: "720px", padding: "0 24px", margin: "0px auto" }}>
+      <div style={{ maxWidth: "720px", padding: "0 20px", margin: "0px auto" }}>
         <div className="slider">
           {isMounted && (
             <Slider {...settings}>
               <div className="slider-img">
-                <img className="slider-img" src="./slide.png" alt="Slide 1" />
+                <img className="slider-img" src="./Bannerhome.png" alt="Slide 1" />
               </div>
               <div className="slider-img">
-                <img className="slider-img" src="./slide2.png" alt="Slide 2" />
-              </div>
-              <div className="slider-img">
-                <img className="slider-img" src="./slide3.png" alt="Slide 3" />
+                <img className="slider-img" src="./Bannerhome1.png" alt="Slide 2" />
               </div>
             </Slider>
           )}
         </div>
-        <div className="connected-nft" style={{ marginTop: "40px" }}>
-          <div className="connected-nft-title">
-            <h2>Your NFTs</h2>
-          </div>
+        <div className="connected-nft-title">
+            <h2 className='connected-nft-title-text'>Tus NFTs</h2>
+            <div className='connected-nft-title-arrow'>
+              <p>Ver todos</p>
+              <img src="/arrowright.svg" alt="" />
+            </div>
+        </div>
+        <div className="connected-nft">
           <div className="connected-nft-info">
             <div className="connected-nft-info-item">
               <img src="./earlyuser.png" className='connected-nft-image' alt="Top 1k" style={{ width: "100px" }} />
-              <p>Top 1k</p>
+              <p className='connected-nft-info-text'>Founding member</p>
             </div>
             <div className="connected-nft-info-item">
               <div className='scan-button'>
@@ -150,43 +130,36 @@ function App() {
             </div>
           </div>
         </div>
-
-        <div className="connected-wallet" style={{ marginTop: "40px" }}>
-          <div className="connected-wallet-title">
-            <h2>Your Wallet</h2>
-          </div>
-          <div className="connected-wallet-info">
-            <h3>$0.00</h3>
-          </div>
+        <div className="connected-nft-title">
+          <h2 className="connected-nft-title-text">Juegos Destacados</h2>
         </div>
-
-        <div style={{ marginTop: "40px" }}>
-          <img src="./Property 1=Nab Var - Home.svg" alt="Footer Icon" className="connected-footer" style={{ display: "block", margin: "0 auto" }} />
-          <img src="./Home.svg" alt="Home Icon" className="connected-home" style={{ display: "block", margin: "0 auto", marginTop: "10px" }} />
-          <div className="connected-profile-wallet" style={{ display: "flex", justifyContent: "space-between", marginTop: "20px" }}>
-            <a href="./#/profile">
-              <img src="./Profile-gray.svg" alt="Profile Icon" className="connected-profile" />
-            </a>
-            <a href="./#/wallet">
-              <img src="./Wallet-gray.svg" alt="Wallet Icon" className="connected-wallet" />
-            </a>
-          </div>
-        </div>
-      </div>
-      <Box marginY="0" marginX="auto" paddingX="6" style={{ maxWidth: '720px', marginBottom: '80px' }}>
-        <Box marginBottom="5" flexDirection="row">
-          {currentAccount && (
-            <Box flexDirection="column" gap="2">
-              <Text marginTop="1" variant="normal" color="text100">
-                {currentAccount.type === IdentityType.Guest
-                  ? 'Guest account'
-                  : `Logged in with account type ${currentAccount.type}`}{' '}
-              </Text>
-              {currentAccount.type !== IdentityType.Guest && accountToName(currentAccount)}
-            </Box>
+        <div className="connected-nft-games" style={{ overflow: 'hidden' }}>
+          {isMounted && (
+            <Slider {...gameSliderSettings}>
+              <div className="connected-nft-game">
+                <img src="./game.svg" alt="Elemental Raiders" className='connected-nft-game-image'/>
+                <p>Elemental Raiders</p>
+              </div>
+              <div className="connected-nft-game">
+                <img src="./game1.svg" alt="Cyber Titans" className='connected-nft-game-image'/>
+                <p>Cyber Titans</p>
+              </div>
+              <div className="connected-nft-game">
+                <img src="./game2.svg" alt="Big Time" className='connected-nft-game-image'/>
+                <p>Big Time</p>
+              </div>
+              <div className="connected-nft-game">
+                <img src="./game3.svg" alt="Metasoccer" className='connected-nft-game-image'/>
+                <p>Metasoccer</p>
+              </div>
+              <div className="connected-nft-game">
+                <img src="./game4.svg" alt="Axie Infinity" className='connected-nft-game-image'/>
+                <p>Axie Infinity</p>
+              </div>
+            </Slider>
           )}
-
-          <Button
+        </div>
+        <Button
             marginLeft="auto"
             label="Log out"
             size="xs"
@@ -201,72 +174,18 @@ function App() {
               router.navigate('/login')
             }}
           />
-        </Box>
-
-        <Divider background="buttonGlass" />
-
-        <Box marginBottom="5">
-          <Text variant="normal" color="text100" fontWeight="bold">
-            Your wallet address:
-          </Text>
-        </Box>
-
-        <Box marginBottom="5">
-          <Text variant="normal" color="text100" fontWeight="normal">
-            {walletAddress ? (
-              <Box>
-                <Text>{walletAddress}</Text>
-              </Box>
-            ) : (
-              <Spinner />
-            )}
-          </Text>
-        </Box>
-
-        <Box>{fetchWalletAddressError && <Text>Error fetching wallet address: {fetchWalletAddressError}</Text>}</Box>
-
-        <Divider background="buttonGlass" />
-
-        <Box marginBottom="5">
-          <NetworkSwitch onNetworkChange={setNetwork}></NetworkSwitch>
-        </Box>
-
-        <Divider background="buttonGlass" />
-
-        <Collapsible marginY={'3'} label="Send native token transaction">
-          <Divider background="buttonGlass" />
-          <SendTransactionsView network={network} />
-        </Collapsible>
-        <Collapsible marginY={'3'} label="Send ERC20 transaction">
-          <Divider background="buttonGlass" />
-          <SendERC20View network={network} />
-        </Collapsible>
-        <Collapsible marginY={'3'} label="Send ERC1155 transaction">
-          <Divider background="buttonGlass" />
-          <SendERC1155View network={network} />
-        </Collapsible>
-        <Collapsible marginY={'3'} label="Sign a message">
-          <Divider background="buttonGlass" />
-          <SignMessageView network={network} />
-        </Collapsible>
-        <Collapsible marginY={'3'} label="Call contracts">
-          <Divider background="buttonGlass" />
-          <CallContractsView network={network} />
-        </Collapsible>
-        <Collapsible marginY={'3'} label="External Wallet Linking Demo">
-          <Text
-            as="a"
-            variant="medium"
-            color="text100"
-            href="https://demo-waas-wallet-link.pages.dev/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Go to demo
-            <ExternalLinkIcon position="relative" top="1" marginLeft="1" />
-          </Text>
-        </Collapsible>
-      </Box>
+        <div>
+          <img src="/Property 1=Nab Var - Home.svg" alt="" className="connected-footer"/>
+          <a href="/">
+            <img src="/footerHome.svg" alt="" className="connected-home"/>
+          </a>
+          <div className="connected-profile-wallet">
+            <a href="/" className='connected-home-link'></a>
+            <a href="./#/wallet" className="connected-wallet"></a>
+            <a href="./#/profile" className="connected-profile"></a>
+          </div>
+        </div>
+      </div>
     </>
   )
 }

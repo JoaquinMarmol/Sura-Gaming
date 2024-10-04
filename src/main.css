@@ -5,7 +5,8 @@
 }
 
 body {
-  background: var(--seq-colors-background-primary);
+  background: #141218;
+  margin: 0;
 }
 
 .container {
@@ -52,7 +53,6 @@ body {
   text-align: center;
   align-items: center;
   justify-content: center;
-  background-image: url("/img/BANNER_SURA.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100%;
@@ -84,21 +84,27 @@ body {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  min-height: 200px;
-  border: 2px solid #A0E500;
   border-radius: 1rem;
   padding: 1rem; 
-  background-color:#050324;
+  background-color:#211F25;
+  margin-bottom: 2rem;
 }
 
 .connected-nft-title {
   display: flex;
   flex-direction: row;
   gap: 1rem;
-  width: 90%;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
   color: white;
+}
+
+.connected-nft-title-arrow {
+  display: flex;
+  flex-direction: row;
+  gap: 0.3rem;
+  align-items: center;
 }
 
 .connected-nft-title-h3 {
@@ -144,23 +150,26 @@ body {
 
 .connected-home {
   position: fixed;
-  bottom: 55px;
+  bottom: 30px;
   right: 0;
   left: 0;
   margin: 0 auto;
-  width: 40px;
-  height: 40px;
 }
 
 .connected-profile-wallet {
   width: 260px;
   position: fixed;
-  bottom: 15px;
+  bottom: 40px;
   justify-content: space-between;
   display: flex;
   left: 0;
   right: 0;
   margin: auto;
+}
+
+.connected-home-link {
+  width: 40px;
+  height: 40px;
 }
 
 .connected-profile {
@@ -190,7 +199,7 @@ body {
 }
 
 .slick-slider {
-  width: 350px;
+  width: 100%;
   min-height: 200px;
 }
 
@@ -226,14 +235,70 @@ body {
   font-weight: bold;
   display: flex;
   flex-direction: row;
-  justify-content: center;
   align-items: center;
-  background-color: #000;
+  background-color:#141218;
   position: fixed;
   top: 0;
   width: 100vw;
-  height: 42px;
+  height: 52px;
   z-index: 100;
-  left: 0;
-  border-bottom: #A0E500 1px solid;
+  padding-left: 30px;
+}
+
+.connected-nft-title-text {
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.connected-nft-info-text {
+  color: #fff;
+  width: 100px;
+}
+
+.connected-nft-games {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.connected-nft-games {
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  margin-bottom: 2.5rem;
+}
+
+.slick-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.slick-prev:before, .slick-next:before {
+  color: #000;
+  display: none;
+}
+
+.connected-nft-game {
+  padding: 10px;
+  text-align: center;
+  box-sizing: border-box;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 1rem;
+  width: 100%;
+  height: 180px;
+  cursor: pointer;
+  color: white;
+}
+
+.connected-nft-game-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 100%;
 }

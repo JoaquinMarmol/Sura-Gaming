@@ -37,6 +37,21 @@ function Login() {
     onSuccess: async ({ wallet }) => {
       console.log(`Wallet address: ${wallet}`)
       router.navigate('/')
+      const { idToken } = await sequence.getIdToken()
+      const response = await fetch(`${import.meta.env.VITE_API_HOST}/api/user/register`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${idToken}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ wallet })
+      })
+      if (response.ok) {
+        console.log('Registration successful')
+        router.navigate('/')
+      } else {
+        console.error('Registration failed')
+      }
     }
   })
 
@@ -55,7 +70,22 @@ function Login() {
       },
       randomName()
     )
-
+    router.navigate('/')
+    const { idToken } = await sequence.getIdToken()
+    const response = await fetch(`${import.meta.env.VITE_API_HOST}/api/user/register`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${idToken}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ wallet: res.wallet, email: res.email })
+    })  
+    if (response.ok) {
+      console.log('Registration successful')
+      router.navigate('/')
+    } else {
+      console.error('Registration failed')
+    }
     console.log(`Wallet address: ${res.wallet}`)
     console.log(`Email address: ${res.email}`)
     router.navigate('/')

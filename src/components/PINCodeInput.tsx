@@ -107,7 +107,7 @@ export const PINCodeInput = (props: PINCodeInputProps) => {
             onKeyDown={ev => {
               handleKeyDown(idx, ev)
             }}
-            style={{ textAlign: 'center', backgroundColor: '#333' }}
+            style={{ textAlign: 'center', backgroundColor: '#27242D' }}
           />
         </Fragment>
       ))}
